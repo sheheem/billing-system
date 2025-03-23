@@ -1,0 +1,83 @@
+<aside class="fixed top-0 left-0 h-screen bg-slate-800 text-white overflow-y-auto transition-[width] duration-300 ease-in-out pt-16" 
+       [ngClass]="isCollapsed() ? 'w-16' : 'w-64'">
+  <div class="flex justify-end p-4">
+    <button 
+      (click)="toggleSidebar()"
+      class="text-white bg-transparent border-none cursor-pointer text-base p-2 rounded hover:bg-white/10"
+    >
+      <i>{{ isCollapsed() ? '→' : '←' }}</i>
+    </button>
+  </div>
+  
+  <div class="pb-4">
+    <div class="mb-6">
+      <div *ngIf="!isCollapsed()" class="uppercase text-xs text-gray-400 px-4 py-3 font-semibold">
+        Main Navigation
+      </div>
+      
+      <ul class="m-0 p-0 list-none">
+        <li *ngFor="let item of menuItems()" 
+            class="my-0.5"
+            [ngClass]="{'bg-white/10 font-medium': isActiveRoute(item.route)}">
+          <a 
+            [routerLink]="item.route ? [item.route] : null"
+            (click)="item.children?.length ? toggleMenuItem(item) : null"
+            class="flex items-center text-gray-300 no-underline py-3 px-4 text-sm cursor-pointer transition-all hover:bg-white/5 hover:text-white relative"
+            [class.has-children]="item.children?.length"
+          >
+            <i class="text-lg w-5 text-center" [ngClass]="{'mr-3': !isCollapsed()}">{{ item.icon }}</i>
+            <span *ngIf="!isCollapsed()">{{ item.label }}</span>
+            <i *ngIf="!isCollapsed() && item.children?.length" 
+               class="absolute right-4 text-xs">
+              {{ item.expanded ? '▼' : '▶' }}
+            </i>
+          </a>
+          
+          <ul *ngIf="!isCollapsed() && item.children?.length && item.expanded" 
+              class="list-none p-0 m-0 bg-black/15">
+            <li *ngFor="let child of item.children" 
+                [ngClass]="{'bg-white/10': isActiveRoute(child.route)}">
+              <a 
+                [routerLink]="child.route ? [child.route] : null"
+                class="flex items-center text-gray-300 no-underline py-2.5 px-4 pl-12 text-sm hover:bg-white/5"
+              >
+                <i class="text-lg w-5 text-center mr-3">{{ child.icon }}</i>
+                <span>{{ child.label }}</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    
+    <!-- <div *ngIf="isAdmin() && !isCollapsed()" class="mb-6">
+      <div class="uppercase text-xs text-gray-400 px-4 py-3 font-semibold">
+        Administration
+      </div>
+      
+      <ul class="m-0 p-0 list-none">
+        <li *ngFor="let item of adminMenuItems()" 
+            class="my-0.5"
+            [ngClass]="{'bg-white/10 font-medium': isActiveRoute(item.route)}">
+          <a 
+            [routerLink]="item.route ? [item.route] : null"
+            class="flex items-center text-gray-300 no-underline py-3 px-4 text-sm hover:bg-white/5 hover:text-white"
+          >
+            <i class="text-lg w-5 text-center mr-3">{{ item.icon }}</i>
+            <span>{{ item.label }}</span>
+          </a>
+        </li>
+      </ul>
+    </div> -->
+  </div>
+  
+  <div *ngIf="!isCollapsed()" class="p-4 border-t border-white/10">
+    <a 
+      routerLink="/help"
+      class="flex items-center text-gray-300 no-underline text-sm p-2 rounded transition-all hover:bg-white/5"
+    >
+      <i class="mr-2">❓</i>
+      <span>Help & Support</span>
+    </a>
+  </div>
+</aside>
