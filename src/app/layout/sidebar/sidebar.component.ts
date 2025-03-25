@@ -27,9 +27,9 @@ export class SidebarComponent {
       route: '/dashboard' 
     },
     { 
-      label: 'Invoices', 
+      label: 'Create Bill', 
       icon: '📝', 
-      route: '/invoices' 
+      route: '/home/billing' 
     },
     { 
       label: 'Clients', 

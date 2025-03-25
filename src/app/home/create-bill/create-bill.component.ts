@@ -94,7 +94,7 @@ getSubtotal(): number {
 }
 
 getTax(): number {
-  return this.getSubtotal() * 0.1; // 10% tax
+  return this.getSubtotal() * 0.15; // 15% tax
 }
 
 getTotal(): number {
