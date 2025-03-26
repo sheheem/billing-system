@@ -15,10 +15,10 @@
         </mat-select>
       </mat-form-field>
   
-      <mat-form-field  class="w-full">
-        <mat-label>Invoice Number</mat-label>
-        <input matInput formControlName="invoiceNumber" placeholder="Enter invoice number" class="text-lg">
-        <mat-hint>Format: INV-YYYY-XXXX</mat-hint>
+      <mat-form-field class="w-full">
+        <mat-label>{{ invoiceForm.get('type')?.value === 'QUOTATION' ? 'Quotation Number' : 'Invoice Number' }}</mat-label>
+        <input matInput formControlName="invoiceNumber" placeholder="Enter number" class="text-lg">
+        <mat-hint>Format: {{ invoiceForm.get('type')?.value === 'QUOTATION' ? 'QUO-YYYY-XXXX' : 'INV-YYYY-XXXX' }}</mat-hint>
       </mat-form-field>
     </div>
   
@@ -31,7 +31,7 @@
       </mat-form-field>
   
       <mat-form-field  class="w-full">
-        <mat-label>PO Number</mat-label>
+        <mat-label>{{ invoiceForm.get('type')?.value === 'QUOTATION' ? 'Ref Number' : 'PO Number'}}</mat-label>
         <input matInput formControlName="poNumber" placeholder="Enter PO number" class="text-lg">
         <mat-hint>Reference number from customer</mat-hint>
       </mat-form-field>
