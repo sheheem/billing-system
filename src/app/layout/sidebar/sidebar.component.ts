@@ -32,12 +32,12 @@ export class SidebarComponent {
       route: '/home/billing' 
     },
     { 
-      label: 'Clients', 
+      label: 'Vendors', 
       icon: '👥', 
       children: [
-        { label: 'All Clients', icon: '👥', route: '/clients' },
-        { label: 'Add Client', icon: '➕', route: '/clients/add' },
-        { label: 'Client Groups', icon: '🔖', route: '/clients/groups' }
+        { label: 'All Vendors', icon: '👥', route: '/vendors' },
+        { label: 'Add Vendor', icon: '➕', route: '/vendors/add' },
+        { label: 'Vendor Groups', icon: '🔖', route: '/vendors/groups' }
       ],
       expanded: false
     },
